@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Tax Deals – Intake (No SSN / No Docs)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-3">
+  <div class="card shadow-sm"><div class="card-body">
+    <h4 class="mb-1">Tax Intake (No SSN / No Documents)</h4>
+    <div class="text-muted mb-3">
+      We only collect Yes/No details to identify possible credits and maximize refund.
+      If a document is needed, we request it separately by email.
+    </div>
+
+    {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+
+    <form method="post">
+      <h6>1) Contact</h6>
+      <input class="form-control mb-2" name="full_name" placeholder="Full Name *" required>
+      <input class="form-control mb-2" name="email" placeholder="Email (for follow-up)">
+      <input class="form-control mb-2" name="phone" placeholder="Phone">
+      <input class="form-control mb-3" name="filing_year" placeholder="Tax year (example: 2025)">
+
+      <h6>2) Basic Status</h6>
+      <select class="form-select mb-2" name="marital_status">
+        <option value="">Marital status as of Dec 31</option>
+        <option>Single</option><option>Married</option><option>Separated</option><option>Divorced</option><option>Widowed</option>
+      </select>
+      <select class="form-select mb-2" name="can_be_claimed">
+        <option value="">Can someone claim you as a dependent?</option>
+        <option>Yes</option><option>No</option><option>Not sure</option>
+      </select>
+      <select class="form-select mb-3" name="lived_us_6mo">
+        <option value="">Lived in the U.S. at least 6 months during the year?</option>
+        <option>Yes</option><option>No</option><option>Not sure</option>
+      </select>
+
+      <hr>
+
+      <h6>3) Dependents / Household (Maximum refund section)</h6>
+      <select class="form-select mb-2" name="has_dependents">
+        <option value="">Do you have dependents you may claim?</option>
+        <option>Yes</option><option>No</option><option>Not sure</option>
+      </select>
+
+      <div class="row g-2">
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="dep_lived_half_year">
+            <option value="">Did dependent(s) live with you more than half the year?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="paid_half_home">
+            <option value="">Did you pay > half the cost of keeping up your home?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-2 mt-1">
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="someone_else_claim_child">
+            <option value="">Could someone else claim your child/dependent?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="custody_agreement">
+            <option value="">Any custody agreement / Form 8332 possibility?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-2 mt-1">
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="you_provided_support">
+            <option value="">Did you provide > half of dependent's support?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="child_under_19_or_student">
+            <option value="">Any dependent under 17 / under 19 / student under 24?</option>
+            <option>Yes</option><option>No</option><option>Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-2 mt-1">
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="investment_income_over_limit">
+            <option value="">Do you have significant investment income? (interest/div/cap gains)</option>
+            <option>No</option><option>Yes</option><option>Not sure</option>
+          </select>
+          <div class="form-text">EITC has investment income limits; we confirm by email if needed.</div>
+        </div>
+        <div class="col-12 col-md-6">
+          <select class="form-select" name="nonresident_or_dual_status">
+            <option value="">Nonresident or dual-status for the year?</option>
+            <option>No</option><option>Yes</option><option>Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <hr>
+
+      <h6>4) Income Signals (Yes/No)</h6>
+      <div class="row g-2">
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="has_w2"><option value="">W-2 wages?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="has_1099_nec"><option value="">1099-NEC (contractor)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="has_1099_k"><option value="">1099-K (PayPal/Stripe/CashApp)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="cash_income"><option value="">Any cash income not on forms?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="unemployment"><option value="">Unemployment received?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="interest_div"><option value="">Interest/dividends?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="retirement_1099r"><option value="">Retirement distribution (1099-R)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="crypto"><option value="">Any crypto activity?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="self_employed"><option value="">Any side business/self-employed work?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="business_expenses"><option value="">If self-employed: any business expenses?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+      </div>
+
+      <hr>
+
+      <h6>5) Credits / Deductions Signals</h6>
+      <div class="row g-2">
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="childcare"><option value="">Paid childcare to work/school?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="marketplace_1095a"><option value="">Marketplace health insurance (1095-A)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="education_1098t"><option value="">Education / college (1098-T)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="retirement_contrib"><option value="">Retirement contributions (IRA/401k)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="hsa"><option value="">HSA contributions/distributions?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="student_loan_interest"><option value="">Student loan interest paid (1098-E)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+      </div>
+
+      <hr>
+
+      <h6>6) Itemized / Other Situations</h6>
+      <div class="row g-2">
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="mortgage_1098"><option value="">Mortgage interest (1098)?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="property_tax"><option value="">Property taxes paid?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="charity"><option value="">Large charitable donations?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="large_medical"><option value="">Very large medical expenses?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="moved_states"><option value="">Moved states during the year?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="gambling"><option value="">Gambling income?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+        <div class="col-12 col-md-4">
+          <select class="form-select" name="foreign_accounts"><option value="">Foreign bank accounts/assets?</option><option>Yes</option><option>No</option><option>Not sure</option></select>
+        </div>
+      </div>
+
+      <hr>
+
+      <h6>7) One short explanation (optional)</h6>
+      <textarea class="form-control" name="explain" rows="3" placeholder="Any important detail that may increase refund (short)"></textarea>
+
+      <button class="btn btn-primary w-100 mt-3">Submit</button>
+      <div class="text-muted small mt-2">
+        No SSN. No document uploads. If needed, we request documents by email after review.
+      </div>
+    </form>
+  </div></div>
+</div>
+</body>
+</html>
+<!doctype html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tax Intake</title></head>
+<body>
+<h3>Tax Intake (No SSN / No Documents)</h3>
+<form method="post">
+<input name="full_name" placeholder="Full Name" required><br>
+<input name="email" placeholder="Email"><br>
+<input name="phone" placeholder="Phone"><br>
+<input name="filing_year" placeholder="Tax Year"><br><br>
+
+<label>Dependents?</label>
+<select name="has_dependents"><option></option><option>Yes</option><option>No</option></select><br>
+
+<label>Paid >50% household costs?</label>
+<select name="paid_half_home"><option></option><option>Yes</option><option>No</option></select><br>
+
+<label>W-2 income?</label>
+<select name="has_w2"><option></option><option>Yes</option><option>No</option></select><br>
+
+<label>Self-employed?</label>
+<select name="self_employed"><option></option><option>Yes</option><option>No</option></select><br>
+
+<label>Marketplace insurance (1095-A)?</label>
+<select name="marketplace_1095a"><option></option><option>Yes</option><option>No</option></select><br>
+
+<label>Education expenses (1098-T)?</label>
+<select name="education_1098t"><option></option><option>Yes</option><option>No</option></select><br><br>
+
+<button>Submit</button>
+</form>
+</body>
+</html>
