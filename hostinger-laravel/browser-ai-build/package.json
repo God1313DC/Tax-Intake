@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "esbuild": "^0.25.12"
+  }
+}

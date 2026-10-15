@@ -1,18 +1,20 @@
 from flask import Flask, request, redirect, session, render_template_string
-import sqlite3, os, json
+import sqlite3, os, json, secrets
 from datetime import datetime
 
 # -------------------------
 # Config
 # -------------------------
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "change-this-secret-key-now")
+app.secret_key = os.environ.get("SECRET_KEY") or secrets.token_hex(32)
 
-DASH_USER = os.environ.get("DASH_USER", "admin")
-DASH_PASS = os.environ.get("DASH_PASS", "admin123")  # change this
+DASH_USER = os.environ.get("DASH_USER", "")
+DASH_PASS = os.environ.get("DASH_PASS", "")  # change this
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DB_PATH = os.path.join(BASE_DIR, "tax_intake.db")
+DB_PATH = os.environ.get("DATABASE_PATH", os.path.join(BASE_DIR, "tax_intake.db"))
+app.config["MAX_CONTENT_LENGTH"] = 65536
+app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax", SESSION_COOKIE_SECURE=os.environ.get("COOKIE_SECURE", "true").lower() == "true")
 
 # -------------------------
 # DB
@@ -603,7 +605,8 @@ DASH_HTML = BASE_HEAD + """
 <div class="d-flex justify-content-between align-items-center mb-2">
   <h4 class="mb-0">Preparer Dashboard</h4>
   <div class="d-flex gap-2">
-    <a class="btn btn-outline-secondary btn-sm" href="/">Open Intake</a>
+    <a class="btn btn-outline-secondary btn-sm" href="/start">New intake</a>
+    <a class="btn btn-outline-primary btn-sm" href="/intake-team">Individual &amp; Business submissions</a>
     <a class="btn btn-outline-danger btn-sm" href="/logout">Logout</a>
   </div>
 </div>
@@ -742,7 +745,7 @@ def login():
     if request.method == "POST":
         u = pick(request.form.get("username"))
         p = pick(request.form.get("password"))
-        if u == DASH_USER and p == DASH_PASS:
+        if DASH_USER and DASH_PASS and secrets.compare_digest(u, DASH_USER) and secrets.compare_digest(p, DASH_PASS):
             session["logged_in"] = True
             return redirect("/dashboard")
         err = "Invalid login."
@@ -781,6 +784,9 @@ def dashboard():
         })
 
     return render_template_string(DASH_HTML, items=items)
+
+from guided import register
+register(app, db)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "5050"))
