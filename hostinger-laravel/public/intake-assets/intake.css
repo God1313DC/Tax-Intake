@@ -5,3 +5,5 @@
 .local-ai-card{border:1px solid #d9e2ed;border-radius:16px;background:white;padding:20px;margin-bottom:25px}.local-ai-card h2{margin-top:0}.local-ai-card textarea{display:block;width:100%;font:inherit;border:1px solid #becbda;border-radius:8px;padding:12px;margin:10px 0}.local-ai-card button{margin:5px 4px 5px 0;font-size:.85rem}.local-ai-card label{display:block;margin-top:10px}#ai-output{border-left:3px solid #d42027;padding-left:12px;margin:16px 0;font-size:.9rem;line-height:1.7;overflow-wrap:anywhere}@media print{header,aside,footer,button,#ai-panel{display:none!important}.layout{display:block}.conversation{border:0}}
 
 .layout{align-items:start}@media(min-width:701px){.layout>.conversation{position:sticky;top:20px}}
+
+.chat-inquiry{display:inline-block;color:#b91920;font-weight:650;margin-top:12px;font-size:.85rem}.local-ai-card h2{font-size:1.4rem}#ai-output{background:#f6f7fb;border-radius:0 10px 10px 0;padding:12px;line-height:1.55}
