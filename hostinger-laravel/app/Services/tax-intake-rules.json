@@ -1,0 +1,725 @@
+{
+  "individual": {
+    "questions": [
+      {
+        "key": "full_name",
+        "label": "What is your full name?",
+        "choices": null,
+        "when": null,
+        "help": "Use the name you want our preparer to use when contacting you. No identification document is needed here."
+      },
+      {
+        "key": "email",
+        "label": "Which email can our team use to contact you?",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "filing_year",
+        "label": "Which tax year are you filing for?",
+        "choices": [
+          "2026",
+          "2025",
+          "2024",
+          "2023",
+          "Other"
+        ],
+        "when": null,
+        "help": "The tax year is the year your income and activity relate to, not necessarily the year you submit the return."
+      },
+      {
+        "key": "other_year",
+        "label": "Enter the four-digit tax year.",
+        "choices": null,
+        "when": [
+          "filing_year",
+          "Other"
+        ],
+        "help": ""
+      },
+      {
+        "key": "states",
+        "label": "Which states did you live in or do business in during that year?",
+        "choices": null,
+        "when": null,
+        "help": "List state names only. Include states where you moved, worked, or had business activity so your preparer can check state filing needs."
+      },
+      {
+        "key": "marital",
+        "label": "What was your marital status on December 31?",
+        "choices": [
+          "Single",
+          "Married",
+          "Separated",
+          "Divorced",
+          "Widowed",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Choose the status that applied at year-end. Your preparer will determine the correct filing status from your circumstances."
+      },
+      {
+        "key": "residency",
+        "label": "What was your U.S. tax residency status?",
+        "choices": [
+          "Resident all year",
+          "Nonresident",
+          "Dual-status",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Immigration status and tax residency can differ. Select Not sure if you need help."
+      },
+      {
+        "key": "visa",
+        "label": "Which visa/status did you hold, and in which years were you present in the U.S.? Do not enter ID numbers.",
+        "choices": null,
+        "when": [
+          "residency",
+          [
+            "Nonresident",
+            "Dual-status",
+            "Not sure"
+          ]
+        ],
+        "help": ""
+      },
+      {
+        "key": "dependents",
+        "label": "Might you claim any children or other dependents?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "This can include children or other relatives. Being related or paying support alone does not establish eligibility; we will review the facts."
+      },
+      {
+        "key": "dependent_facts",
+        "label": "For each possible dependent, give age, relationship, months living with you, student status, support details, and whether anyone else may claim them. No names or IDs needed.",
+        "choices": null,
+        "when": [
+          "dependents",
+          [
+            "Yes",
+            "Not sure"
+          ]
+        ],
+        "help": ""
+      },
+      {
+        "key": "wages",
+        "label": "Did you receive employee wages (W-2)?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Employee wages are usually reported on Form W-2. Freelance or gig work is asked about separately."
+      },
+      {
+        "key": "self_employed",
+        "label": "Any freelance, gig, cash, or self-employment income?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include freelancing, delivery apps, consulting, a side business, or cash work, even if you did not receive a 1099."
+      },
+      {
+        "key": "gig_details",
+        "label": "What kind of work did you do, and did you track expenses or business mileage?",
+        "choices": null,
+        "when": [
+          "self_employed",
+          "Yes"
+        ],
+        "help": ""
+      },
+      {
+        "key": "investments",
+        "label": "Any interest, dividends, stock sales, or digital asset transactions?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include bank interest, dividends, investment sales and digital asset activity. Your team will clarify which records apply."
+      },
+      {
+        "key": "retirement_income",
+        "label": "Any retirement distributions, pension, or Social Security income?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "unemployment",
+        "label": "Any unemployment or gambling income?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "rental",
+        "label": "Any rental property income?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "education",
+        "label": "Did you or a possible dependent have college education expenses?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include college tuition, required books, scholarships and grants for you or a possible dependent. Do not enter financial account numbers."
+      },
+      {
+        "key": "childcare",
+        "label": "Did you pay care expenses so you or your spouse could work or look for work?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "marketplace",
+        "label": "Did anyone on your return have Marketplace health insurance (1095-A)?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Marketplace coverage generally comes with Form 1095-A. Employer coverage is different. Choose Not sure if you cannot tell."
+      },
+      {
+        "key": "hsa",
+        "label": "Any HSA contributions or distributions?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "An HSA is a health savings account, not the same as an FSA. Contributions and withdrawals can both create reporting needs."
+      },
+      {
+        "key": "retirement",
+        "label": "Did you contribute to an IRA or workplace retirement plan?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "deductions",
+        "label": "Any mortgage interest, property taxes, donations, medical costs, or student loan interest?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "new_items",
+        "label": "Any tips, overtime, vehicle purchases, home energy improvements, or other major changes?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "new_details",
+        "label": "Describe the change and when it happened. Your preparer will check the tax-year rules.",
+        "choices": null,
+        "when": [
+          "new_items",
+          "Yes"
+        ],
+        "help": ""
+      },
+      {
+        "key": "foreign",
+        "label": "Any foreign income, accounts, assets, or ownership interests?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include foreign income, bank or investment accounts, and business interests. Do not enter account numbers or exact balances here."
+      },
+      {
+        "key": "payments",
+        "label": "Did you make estimated payments, file an extension, or receive tax notices?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Tell us whether any payments, extensions or notices exist. Keep confirmations for secure collection later."
+      },
+      {
+        "key": "notes",
+        "label": "Anything else your preparer should know? Enter None if nothing else. Do not enter SSNs, EINs, bank numbers, or document contents.",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "consent",
+        "label": "May US Tax Deals save these answers and contact you about this intake?",
+        "choices": [
+          "I agree",
+          "I do not agree"
+        ],
+        "when": null,
+        "help": "Agreeing lets US Tax Deals retain these answers and contact you about this intake. If you do not agree, your answers will not be submitted."
+      }
+    ],
+    "baseline": [
+      {
+        "title": "Prior-year return and relevant tax notices",
+        "reason": "Helps your preparer reconcile prior information and carryovers.",
+        "source": "https://www.irs.gov/filing/gather-your-documents"
+      }
+    ],
+    "rules": {
+      "dependents": [
+        {
+          "title": "Dependent eligibility, residency, support and custody records",
+          "reason": "Possible dependents require separate eligibility checks.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "wages": [
+        {
+          "title": "W-2 forms",
+          "reason": "Employment income reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "self_employed": [
+        {
+          "title": "Income records, 1099-NEC/1099-K if received, expense receipts and mileage logs",
+          "reason": "Self-employment activity reported; all income needs review, even without a form.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "investments": [
+        {
+          "title": "1099-INT, 1099-DIV, brokerage and digital asset transaction records as applicable",
+          "reason": "Investment or digital asset activity reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "retirement_income": [
+        {
+          "title": "1099-R / SSA-1099 and distribution records as applicable",
+          "reason": "Retirement or Social Security income reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "unemployment": [
+        {
+          "title": "1099-G / W-2G and supporting records as applicable",
+          "reason": "Unemployment or gambling activity reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "rental": [
+        {
+          "title": "Rental income, expenses and depreciation history",
+          "reason": "Rental activity reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "education": [
+        {
+          "title": "1098-T, tuition receipts, scholarship and grant records",
+          "reason": "Education expenses need reconciliation.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "childcare": [
+        {
+          "title": "Care payment records and provider details through a secure channel",
+          "reason": "Work-related dependent care reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "marketplace": [
+        {
+          "title": "1095-A for each Marketplace policy",
+          "reason": "Marketplace coverage needs reconciliation review.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "hsa": [
+        {
+          "title": "1099-SA, 5498-SA and coverage/contribution records",
+          "reason": "HSA activity reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "retirement": [
+        {
+          "title": "Retirement contribution records",
+          "reason": "Retirement contributions reported.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "deductions": [
+        {
+          "title": "Relevant 1098/1098-E, property tax, donation and medical expense records",
+          "reason": "Potential adjustments or itemized deductions need review.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "new_items": [
+        {
+          "title": "Dated supporting records for tips, overtime, purchases or improvements mentioned",
+          "reason": "Preparer must verify the applicable tax-year law and effective dates.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "foreign": [
+        {
+          "title": "Foreign income/account/ownership summaries through a secure channel",
+          "reason": "International reporting may apply; thresholds and exceptions need review.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ],
+      "payments": [
+        {
+          "title": "Estimated payment confirmations, extensions and notices",
+          "reason": "Reconcile payments and correspondence.",
+          "source": "https://www.irs.gov/filing/gather-your-documents"
+        }
+      ]
+    }
+  },
+  "business": {
+    "questions": [
+      {
+        "key": "full_name",
+        "label": "What is your full name?",
+        "choices": null,
+        "when": null,
+        "help": "Use the name you want our preparer to use when contacting you. No identification document is needed here."
+      },
+      {
+        "key": "email",
+        "label": "Which email can our team use to contact you?",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "filing_year",
+        "label": "Which tax year are you filing for?",
+        "choices": [
+          "2026",
+          "2025",
+          "2024",
+          "2023",
+          "Other"
+        ],
+        "when": null,
+        "help": "The tax year is the year your income and activity relate to, not necessarily the year you submit the return."
+      },
+      {
+        "key": "other_year",
+        "label": "Enter the four-digit tax year.",
+        "choices": null,
+        "when": [
+          "filing_year",
+          "Other"
+        ],
+        "help": ""
+      },
+      {
+        "key": "states",
+        "label": "Which states did you live in or do business in during that year?",
+        "choices": null,
+        "when": null,
+        "help": "List state names only. Include states where you moved, worked, or had business activity so your preparer can check state filing needs."
+      },
+      {
+        "key": "business_name",
+        "label": "What is the business name? Do not enter its EIN.",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "entity",
+        "label": "How is the business taxed?",
+        "choices": [
+          "Sole proprietor",
+          "Single-member LLC / disregarded",
+          "Partnership",
+          "S corporation",
+          "C corporation",
+          "Nonprofit",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "An LLC is a legal structure. Its federal tax treatment can differ."
+      },
+      {
+        "key": "activity",
+        "label": "Briefly describe what the business does.",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "year_end",
+        "label": "What is the fiscal year-end date (month/day)?",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "owners",
+        "label": "How many owners are there, and did ownership change during the year? No owner IDs needed.",
+        "choices": null,
+        "when": null,
+        "help": "Give a count and a brief description of changes. Do not enter owner SSNs, ITINs or other identification numbers."
+      },
+      {
+        "key": "books",
+        "label": "Are year-end bookkeeping records ready?",
+        "choices": [
+          "Yes",
+          "Partially",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Ready means your year-end income, expenses and account reconciliations are organized. Choose Partially or No if you need bookkeeping help."
+      },
+      {
+        "key": "payroll",
+        "label": "Did the business pay employees or owner wages?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include employees and any wages paid to owners. Contractor payments are asked about in the next question."
+      },
+      {
+        "key": "contractors",
+        "label": "Did the business pay independent contractors?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Think about payments to independent service providers. Your preparer will review reporting requirements and request records securely."
+      },
+      {
+        "key": "inventory",
+        "label": "Did the business buy or sell inventory?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Inventory means goods held for sale. Your preparer may need beginning and ending inventory values and purchase records."
+      },
+      {
+        "key": "assets",
+        "label": "Any equipment, vehicles, property purchases, sales, or disposals?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include business equipment, vehicles and property bought, sold or disposed of. Your preparer will check the rules for the relevant year."
+      },
+      {
+        "key": "loans",
+        "label": "Any business loans, owner contributions, distributions, or related-party transactions?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include business borrowing and money owners put into or took out of the company. Tax treatment depends on the entity and records."
+      },
+      {
+        "key": "foreign",
+        "label": "Any foreign owners, accounts, income, or international transactions?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include foreign income, bank or investment accounts, and business interests. Do not enter account numbers or exact balances here."
+      },
+      {
+        "key": "multistate",
+        "label": "Did the business operate, sell, employ people, or hold property in more than one state?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Include locations of sales, workers, offices, inventory or property. Your preparer will review whether more than one state return is needed."
+      },
+      {
+        "key": "payments",
+        "label": "Any estimated tax payments, extensions, or IRS/state notices?",
+        "choices": [
+          "Yes",
+          "No",
+          "Not sure"
+        ],
+        "when": null,
+        "help": "Tell us whether any payments, extensions or notices exist. Keep confirmations for secure collection later."
+      },
+      {
+        "key": "notes",
+        "label": "Anything else your preparer should know? Enter None if nothing else. Do not enter SSNs, EINs, bank numbers, or document contents.",
+        "choices": null,
+        "when": null,
+        "help": ""
+      },
+      {
+        "key": "consent",
+        "label": "May US Tax Deals save these answers and contact you about this intake?",
+        "choices": [
+          "I agree",
+          "I do not agree"
+        ],
+        "when": null,
+        "help": "Agreeing lets US Tax Deals retain these answers and contact you about this intake. If you do not agree, your answers will not be submitted."
+      }
+    ],
+    "baseline": [
+      {
+        "title": "Prior-year return and relevant tax notices",
+        "reason": "Helps your preparer reconcile prior information and carryovers.",
+        "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+      },
+      {
+        "title": "Year-end profit and loss, balance sheet and general ledger",
+        "reason": "Core business bookkeeping for return preparation.",
+        "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+      },
+      {
+        "title": "Business bank/card reconciliations and revenue/expense support",
+        "reason": "Supports completeness and classification of the books.",
+        "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+      },
+      {
+        "title": "Formation documents, prior elections and ownership records",
+        "reason": "Confirm entity classification and applicable return.",
+        "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+      }
+    ],
+    "rules": {
+      "payroll": [
+        {
+          "title": "Payroll summaries, W-2/W-3, 941/940 and state payroll records",
+          "reason": "Employee or owner compensation reported.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "contractors": [
+        {
+          "title": "Contractor payment ledger and information-return records",
+          "reason": "Review reporting obligations; do not send W-9 IDs in this form.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "inventory": [
+        {
+          "title": "Beginning/ending inventory and purchase records",
+          "reason": "Inventory activity reported.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "assets": [
+        {
+          "title": "Asset register, purchase/sale records and depreciation schedules",
+          "reason": "Asset changes need tax-year-specific treatment.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "loans": [
+        {
+          "title": "Loan statements, interest records and owner transaction/basis schedules",
+          "reason": "Financing and owner transactions reported.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "foreign": [
+        {
+          "title": "Foreign income/account/ownership summaries through a secure channel",
+          "reason": "International reporting may apply; thresholds and exceptions need review.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "multistate": [
+        {
+          "title": "Revenue, payroll and property by state, plus state filings",
+          "reason": "State nexus and apportionment require preparer review.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ],
+      "payments": [
+        {
+          "title": "Estimated payment confirmations, extensions and notices",
+          "reason": "Reconcile payments and correspondence.",
+          "source": "https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep"
+        }
+      ]
+    }
+  }
+}
