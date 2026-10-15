@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\TaxIntakeService;
+use App\Services\TaxIntakeSources;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class TaxIntakeController extends Controller
         if (!$request->session()->has('intake_owner')) $request->session()->put('intake_owner', Str::random(64));
         return response()->view('intake.form', ['kind'=>$kind, 'settings'=>[
             'kind'=>$kind,'questions'=>$questions,'csrf'=>csrf_token(),
-            'submitUrl'=>url('/tax-intake/'.$kind.'/submit'), 'explainUrl'=>url('/tax-intake/explain')
+            'submitUrl'=>url('/tax-intake/'.$kind.'/submit'), 'explainUrl'=>url('/tax-intake/explain'),'sourceUrl'=>url('/tax-intake/guidance/'.$kind)
         ]])->header('Cache-Control','no-store, private');
     }
 
@@ -38,6 +39,7 @@ class TaxIntakeController extends Controller
             if ($q['choices']) $rules[$q['key']][] = Rule::in($q['choices']);
         }
         $rules['email'] = ['required','email','max:254'];
+        $rules['_ai_summary'] = ['nullable','string','max:2500'];
         $rules['consent'] = ['required', Rule::in(['I agree'])];
         if (($input['filing_year'] ?? '') === 'Other') $rules['other_year'] = ['required','regex:/^(19|20)\d{2}$/'];
         $answers = Validator::make($input, $rules, [], $labels)->validate();
@@ -72,9 +74,9 @@ class TaxIntakeController extends Controller
         return response()->json(['text'=>$fallback,'mode'=>'guided'])->header('Cache-Control','no-store');
     }
 
-    public function team(TaxIntakeService $service)
+    public function team(TaxIntakeService $service, TaxIntakeSources $sources)
     {
-        return response()->view('intake.team',['items'=>$service->recent()])
+        return response()->view('intake.team',['items'=>$service->recent(),'sources'=>$sources->status()])
             ->header('Cache-Control','no-store, private')->header('X-Robots-Tag','noindex, nofollow');
     }
 
@@ -84,4 +86,22 @@ class TaxIntakeController extends Controller
         $ok=$service->notify($data['reference']);
         return back()->with('intake_notice',$ok ? 'Notification accepted by the mail server.' : 'Notification was already sent or delivery still needs attention.');
     }
+
+    public function guidance(string $kind, TaxIntakeSources $sources)
+    {
+        abort_unless(in_array($kind,['individual','business'],true),404);
+        $source=$sources->status()['sources'][$kind] ?? [];
+        return response()->json(['url'=>TaxIntakeSources::SOURCES[$kind],
+            'text'=>$source['text'] ?? '', 'fetched_at'=>$source['fetched_at'] ?? null,
+            'review_required'=>$source['review_required'] ?? false,'available'=>!($source['error'] ?? true)])
+            ->header('Cache-Control','public, max-age=3600');
+    }
+
+    public function refreshSources(TaxIntakeSources $sources)
+    {
+        $state=$sources->refreshIfDue(true);
+        $failed=count(array_filter($state['sources'] ?? [],fn($item)=>$item['error'] ?? true));
+        return back()->with('intake_notice',$failed ? 'Some IRS sources could not be refreshed. The last available guidance was retained.' : 'IRS source pages refreshed. Changed sources require preparer review.');
+    }
+
 }
